@@ -3,7 +3,9 @@ The installation files necessary to use UIHelper
 
 INSTALLATION INSTRUCTIONS
 
-This script was designed for a folder structure where the mod directory contains a workbench directory. This folder structure is based off of Dabsframework which may have been based off of expansion.
+The following assumes that you are using workbench.  However, CreateUiFromlayout.bat will run from the command-line also so workbench is not necessary. If you do not use workbench, skip steps 1 - 2 below and copy the UIHelper into the main mod directory. If you use workbench, the follow all steps 1 - 4.  
+
+These instructions are based on the folder structure below, which is based on Dabsframework which in turn was based off of the expansion mod structure.
 
 ![image](https://user-images.githubusercontent.com/44187035/203859426-406012ac-8786-4849-af38-429b9a6a623a.png)
 
