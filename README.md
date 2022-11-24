@@ -1,5 +1,7 @@
 # UIHelper
- The installation files necessary to use UIHelper
+The installation files necessary to use UIHelper
+
+INSTALLATION INSTRUCTIONS
 This script was designed for folder structure where the mod directory contains a workbench directory. This folder structure is based off of Dabsframework which may have been based off of expansion.
 
 Modname
