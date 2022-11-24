@@ -13,12 +13,15 @@ Build.c contains a simple structure for implementing commands through the plugin
 ![image](https://user-images.githubusercontent.com/44187035/203859659-9d7c0799-a832-486e-b552-20a1e26d7497.png)
 
 Step 2 -- CreateUniformlayout.bat
+
 CreateUniformlayout.bat is called by build.c from step 1.  Simply copy it into the batchfiles directory.
 
 Step 3 -- UIHelper folder
+
 Copy the entire UIHelper folder and all its subfolders into the Workbench folder.
 
 Step 4 -- UIHelper.cfg
+
 Open UIHelper.cfg in notepad++ and replace the file paths so that they point to your layouts, scripts, and inputs folder. Note that the script requires the slash at the end.
 
 ![image](https://user-images.githubusercontent.com/44187035/203859753-3966f837-4ac2-49da-a5e4-4c898ae94c9b.png)
