@@ -25,4 +25,4 @@ Open UIHelper.cfg in notepad++ and replace the file paths so that they point to 
 
 Close and restart workbench.  You should have an option in plugins to createuifromlayout.
 
-Note.  If you have a different folder structure you may have to make changes to scripts.
+Note.  If you have a different folder structure you may have to make changes to scripts.  Feel free to contact me on discord Kpro # 3271 or on Enfusion Modders Discord for help installing.
