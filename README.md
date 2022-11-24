@@ -11,12 +11,12 @@ These instructions are based on the folder structure below, which is based on Da
 
 
 Step 1 -- build.c  
-Build.c contains a simple structure for implementing commands through the plugins menu in workbench. You should already have a build.c so make a backup of that file.  You can either copy the build.c provided or else copy the portion of the file that relates to UIHelper and paste it into yours.
+Build.c contains a simple structure for implementing commands through the plugins menu in workbench. You should already have a build.c so make a backup of that file.  You can either copy the entire build.c file provided or else copy the portion of the file that relates to UIHelper and paste it into yours.
 ![image](https://user-images.githubusercontent.com/44187035/203859659-9d7c0799-a832-486e-b552-20a1e26d7497.png)
 
-Step 2 -- CreateUiFromlayout.bat
+Step 2 -- CreateUiFromLayout.bat
 
-CreateUiFromlayout.bat is called by build.c from step 1.  Simply copy it into the batchfiles directory.
+CreateUiFromLayout.bat is called by build.c from step 1.  Simply copy it into the batchfiles directory.
 
 Step 3 -- UIHelper folder
 
