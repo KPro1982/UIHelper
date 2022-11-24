@@ -4,21 +4,7 @@ The installation files necessary to use UIHelper
 INSTALLATION INSTRUCTIONS
 This script was designed for folder structure where the mod directory contains a workbench directory. This folder structure is based off of Dabsframework which may have been based off of expansion.
 
-Modname
-|
-|-- Scripts
-|   |
-|   |-- Editor
-|       |
-|       -- Plugins  <--- build.c goes here
-|
-|
-|-- Workbench  
-    |   
-    |--batchfiles   <--- CreatUniformlayout.bat goes here
-    |
-    |-- UIHelper   <--- copy UIHelper folder here
-    
+
 Step 1 -- build.c  
 Build.c contains a simple structure for implementing commands through the plugins menu in workbench. You should already have a build.c so make a backup of that file.  You can either copy the build.c provided or else copy the portion of the file that relates to UIHelper into yours.
 
