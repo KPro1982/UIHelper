@@ -60,6 +60,9 @@ New-Item $TempFile | Out-Null
 
 ((Get-Content -path $TempFile -Raw) -replace 'FrameWidget','Widget') | Set-Content -Path $TempFile
 
+((Get-Content -path $TempFile -Raw) -replace 'PanelWidget','Widget') | Set-Content -Path $TempFile
+
+
 #Remove excluded widgets from temp file
 $lines = Get-Content -Path $TempFile
 if($ExcludePanel -eq 'y')
@@ -77,33 +80,34 @@ $lines = $lines | Where-Object {$_}
 # Create definitions file 
 New-Item $definitionsFile | Out-Null
 $Tab = [char]9
+$threetabs = $Tab + $Tab + $Tab
 
 # Existing $lines array is used as temp file contains excluded widgets
 foreach ($line in $lines) {
-	$buffer = ""
+	$justify = ""
 
 	if ($line.length -gt 1)
 	{
 		$strArr = $line.Split(" ") 
-		$strArr[0] = "private " + $strArr[0]
-		$strArr[1] = " " + "m_" + $strArr[1] + ";"
+		$widgettype = $strArr[0]
+		$widgetname = $strArr[1] 
 
 		
 		# justify text
-		$deflen = $strArr[0].Length
+		$deflen = $widgettype.Length
 		$bufferlen = $columnwhitespace - $deflen
 		for($i = 0; $i -lt $bufferlen; $i++)
 		{
-			$buffer += ' '	
+			$justify += ' '	
 			
 		}
 				
-		$definition =  $strArr[0] + $buffer + $strArr[1]		
+		$definition =  "$tab private $widgettype $justify m_$widgetname;"		
 		$definition | Out-File -append $definitionsFile
+		
 	}
  }
  
-
  
 # Create casts file
 
@@ -114,30 +118,32 @@ $Tab = [char]9
 $nl = [char]13
 $eq = "="
 $quote = '"'
-$cast = ".Cast(layoutroot.FindAnyWidget("
-$close = "));"
+
 
 # Existing $lines array is used as temp file contains excluded widgets
 foreach ($line in $lines) {
-	$buffer = ""
-	$strArr = $line.Split(" ") 
-    $strVar = "m_" + $strArr[1]
-	
-	
-	# justify text
-	$deflen = $strVar.Length
-	$bufferlen = $columnwhitespace - $deflen
-	for($i = 0; $i -lt $bufferlen; $i++)
+	$justify = ""
+
+	if ($line.length -gt 1)
 	{
-		$buffer += ' '	
+		$strArr = $line.Split(" ") 
+		$widgettype = $strArr[0]
+		$widgetname = $strArr[1] 
+
 		
-	}
-	
-	$firstpart = $strVar + $buffer	
-	
-	$castline =  $firstpart + " $eq   " + $strArr[0] + $cast + $quote + $strArr[1] + $quote + $close
+		# justify text
+		$deflen = $widgetname.Length
+		$bufferlen = $columnwhitespace - $deflen
+		for($i = 0; $i -lt $bufferlen; $i++)
+		{
+			$justify += ' '	
+			
+		}
+				
+	$castline =  "$threetabs$widgettype.CastTo(m_$widgetname, layoutroot.FindAnyWidget($quote$widgetname$quote));"
 	$castline | Out-File -append $castsFile
  }
+}
  
  # Write Switch File 
 
@@ -148,13 +154,13 @@ foreach ($line in $lines) {
  foreach ($line in $lines) {
 
 	$strArr = $line.Split(" ") 
-    $strVar = "m_" + $strArr[1]
+	$widgettype = $strArr[0]
+	$widgetname = $strArr[1] 
 	
-	# case m_buttonname
-	$Tab + "case " + "$strVar" + ":" | Out-File -append $switchFile
-	$nl + $Tab + $Tab + "`/`/  Your code goes here" + $nl | Out-File -append $switchFile
-	# break
-	$nl + $Tab + "break;" | Out-File -append $switchFile
+	# case 
+	"$threetabs case m_$widgetname :" | Out-File -append $switchFile
+	"$threetabs `/`/  Your code goes here" + $nl | Out-File -append $switchFile
+	$nl + "$leadingtabs break;" | Out-File -append $switchFile
 	$nl | Out-File -append $switchFile
 	
 	
